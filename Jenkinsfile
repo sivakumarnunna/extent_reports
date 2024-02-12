@@ -16,13 +16,13 @@ sh 'mvn clean test'            }
                 success {
                    publishHTML([
                        allowMissing: false, 
-                       alwaysLinkToLastBuild: false, 
-                       keepAll: false, 
-                       reportDir: 'target/surefire-reports/', 
-                       reportFiles: 'emailable-report.html', 
-                       reportName: 'HTML Report', 
-                       reportTitles: '', 
-                       useWrapperFileDirectly: true])
+                              alwaysLinkToLastBuild: false, 
+                              keepAll: false, 
+                              reportDir: 'Reports', 
+                              reportFiles: 'Spark.html', 
+                              reportName: 'ExtentReport', 
+                              reportTitles: '', 
+                              useWrapperFileDirectly: true])
 
                     emailext body: 'Test Message',
                     subject: 'Test Subject',
