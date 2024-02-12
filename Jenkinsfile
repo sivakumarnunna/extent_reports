@@ -24,9 +24,7 @@ sh 'mvn clean test'            }
                               reportTitles: '', 
                               useWrapperFileDirectly: true])
 
-                    emailext body: 'Test Message',
-                    subject: 'Test Subject',
-                    to: 'nsk.arch@gmail.com'
+                    emailext body: 'Test mesage Test mesage', recipientProviders: [developers()], subject: 'Test message', to: 'nsk.arch@gmail.com'
                 }
             }
         }
