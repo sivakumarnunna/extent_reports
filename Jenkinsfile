@@ -23,6 +23,10 @@ sh 'mvn clean test'            }
                        reportName: 'HTML Report', 
                        reportTitles: '', 
                        useWrapperFileDirectly: true])
+
+                    emailext body: 'Test Message',
+                    subject: 'Test Subject',
+                    to: 'nsk.arch@gmail.com'
                 }
             }
         }
