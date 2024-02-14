@@ -12,6 +12,7 @@ pipeline {
             steps {
                 script{
                  def props = readProperties file: 'config.properties' 
+                    $props.browser = ${browser}
                   echo "The username  is $props.browser"
                 }
 sh 'mvn compile' 
