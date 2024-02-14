@@ -5,7 +5,7 @@ pipeline {
       maven 'Maven3.9.6' 
       jdk 'jdk17' 
     }
-    stage(“reading properties from properties file”) {
+    stage('reading properties from properties file') {
     steps {
         // Use a script block to do custom scripting
         script {
