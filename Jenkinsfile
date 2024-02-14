@@ -5,7 +5,16 @@ pipeline {
       maven 'Maven3.9.6' 
       jdk 'jdk17' 
     }
-    
+    stage(“reading properties from properties file”) {
+    steps {
+        // Use a script block to do custom scripting
+        script {
+            def props = readProperties file: 'config.properties' 
+            //env.Username = props.Username
+        }
+        echo "The username  is ${props.browser}"
+    }
+}
 
 
     stages {
