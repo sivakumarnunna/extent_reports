@@ -7,20 +7,19 @@ pipeline {
     }
     
 
-stage(“reading properties from properties file”) {
+stage('reading properties from properties file') {
     steps {
         // Use a script block to do custom scripting
         script {
-            def props = readProperties file: 'extravars.properties' 
-            env.Username = props.Username
+            def props = readProperties file: 'config.properties' 
         }
-        echo "The username  is $Username"
+        echo "The browser  is ${props.browser}"
     }
 }
     stages {
         stage('Test') {
             steps {
-sh 'mvn clean test'            }
+sh 'mvn compile'            }
  
             post {                
                 // If Maven was able to run the tests, even if some of the test
