@@ -11,7 +11,7 @@ pipeline {
         stage('Test') {
             steps {
                  def props = readProperties file: 'config.properties' 
-                  echo "The username  is ${props.browser}"
+                  echo "The username  is $props.browser"
 sh 'mvn compile'            }
  
             post {                
