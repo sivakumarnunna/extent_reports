@@ -10,9 +10,13 @@ pipeline {
     stages {
         stage('Test') {
             steps {
+                script{
                  def props = readProperties file: 'config.properties' 
                   echo "The username  is $props.browser"
-sh 'mvn compile'            }
+                }
+sh 'mvn compile' 
+            
+            }
  
             post {                
                 // If Maven was able to run the tests, even if some of the test
