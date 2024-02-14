@@ -7,15 +7,7 @@ pipeline {
     }
     
 
-stage('reading properties from properties file') {
-    steps {
-        // Use a script block to do custom scripting
-        script {
-            def props = readProperties file: 'config.properties' 
-        }
-        echo "The browser  is ${props.browser}"
-    }
-}
+
     stages {
         stage('Test') {
             steps {
