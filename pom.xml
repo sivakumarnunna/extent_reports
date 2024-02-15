@@ -11,7 +11,7 @@
         <extentreports.cucumber7.adapter.version>1.14.0</extentreports.cucumber7.adapter.version>
         <extentreports.version>5.1.1</extentreports.version>
         <selenium.version>4.17.0</selenium.version>
-        <testng.version>7.9.0</testng.version>   
+        <testng.version>6.8.8</testng.version>   
         <maven.compiler.plugin.version>3.11.0</maven.compiler.plugin.version>
         <maven.surefire.plugin.version>3.2.1</maven.surefire.plugin.version>
         <maven.compiler.source.version>17</maven.compiler.source.version>
