@@ -26,8 +26,9 @@ sh 'mvn clean test'
               keepAll: true,
               reportDir: 'Reports',
               reportFiles: 'Spark.html',
-              reportName: 'SparkReport'
-            ]
+              reportName: 'SparkReport',
+             reportTitles: 'The Report']
+            
         }
       }
         
