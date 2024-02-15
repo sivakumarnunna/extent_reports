@@ -18,7 +18,7 @@ sh 'mvn clean test'
     }
  
    post {
-        success {
+        always {
           // publish html
           publishHTML target: [
               allowMissing: false,
