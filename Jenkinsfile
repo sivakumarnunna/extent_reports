@@ -22,11 +22,11 @@ sh 'mvn clean test'
           // publish html
           publishHTML target: [
               allowMissing: false,
-              alwaysLinkToLastBuild: false,
+              alwaysLinkToLastBuild: true,
               keepAll: true,
               reportDir: 'Reports',
               reportFiles: 'Spark.html',
-              reportName: 'Spark Report'
+              reportName: 'SparkReport'
             ]
         }
       }
