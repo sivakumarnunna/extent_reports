@@ -17,7 +17,12 @@ sh 'mvn clean test'
 
     }
  
-           
+   publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, 
+   reportDir: 'Reports', 
+   reportFiles: 'Spark.html', 
+   reportName: 'Spark Html report',
+    reportTitles: '',
+     useWrapperFileDirectly: true])
        
     
         }
