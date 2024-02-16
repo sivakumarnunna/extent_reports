@@ -6,13 +6,15 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Properties;
 import java.util.Set;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import org.testng.ITestClass;
 
 public class EnvReaderListener implements org.testng.IClassListener {
 	
 	Properties prop = new Properties();
-	
+	private static Logger logger = LogManager.getLogger();
 	
     public void onBeforeClass(ITestClass cls) {
     	
@@ -29,7 +31,7 @@ public class EnvReaderListener implements org.testng.IClassListener {
            if (env != null && ! env.trim().isEmpty()) {
         	   config.setValue(env);
         	   
-        	   System.out.println(config.getKey() +"  = "+ env);
+        	   logger.info(config.getKey() +"  = "+ env);
            }
        }
     	  
@@ -37,12 +39,11 @@ public class EnvReaderListener implements org.testng.IClassListener {
 
         for (Entry<String, String> parameter : parameters.entrySet()) {
         	
-        	System.out.println(parameter.getKey());
             String env = System.getenv(parameter.getKey());
             if (env != null && ! env.trim().isEmpty()) {
                 parameter.setValue(env);
             }
-     	   System.out.println(parameter.getKey() +"  = "+ env);
+     	   logger.info(parameter.getKey() +"  = "+ env);
 
         }
     }
