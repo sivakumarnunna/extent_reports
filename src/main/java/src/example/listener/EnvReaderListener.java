@@ -17,7 +17,7 @@ public class EnvReaderListener implements org.testng.IClassListener {
     public void onBeforeClass(ITestClass cls) {
     	
     	try {
-			prop.load(new FileInputStream("/Users/nunnasivakumar/git/extent_reports/src/test/resources/config.properties"));
+			prop.load(new FileInputStream("src/test/resources/config.properties"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -42,6 +42,8 @@ public class EnvReaderListener implements org.testng.IClassListener {
             if (env != null && ! env.trim().isEmpty()) {
                 parameter.setValue(env);
             }
+     	   System.out.println(parameter.getKey() +"  = "+ env);
+
         }
     }
 	
