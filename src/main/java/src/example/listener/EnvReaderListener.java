@@ -22,16 +22,19 @@ public class EnvReaderListener implements org.testng.IClassListener {
 			e.printStackTrace();
 		}
     	
-        Map<String, String> parameters = cls.getXmlClass().getAllParameters();
        Set<Entry<Object,Object>> configs =  prop.entrySet();
        
        for(Entry<Object,Object> config : configs) {
            String env = System.getenv(config.getKey().toString());
            if (env != null && ! env.trim().isEmpty()) {
         	   config.setValue(env);
+        	   
+        	   System.out.println(config.getKey() +"  = "+ env);
            }
        }
-    	           
+    	  
+       Map<String, String> parameters = cls.getXmlClass().getAllParameters();
+
         for (Entry<String, String> parameter : parameters.entrySet()) {
         	
         	System.out.println(parameter.getKey());
