@@ -4,6 +4,7 @@
    
   <classes>
   <parameter name="browser" value="${browser}"/>  
+    <parameter name="place" value="${firefox}"/>  
   
   <class  name = "com.example.runner.CucumberRunnerTests"/>
   </classes>

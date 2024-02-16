@@ -6,9 +6,7 @@ agent any
       maven 'Maven3.9.6' 
       jdk 'jdk17' 
     }
-    
-    
-    
+       
     stages {
     
      stage('Test') {
@@ -24,18 +22,14 @@ sh 'mvn clean test'
               allowMissing: false,
               alwaysLinkToLastBuild: true,
               keepAll: true,
-              reportDir: 'Reports',
-              reportFiles: 'Spark.html',
+              reportDir: 'ExtentReports/SparkReport_*',
+              reportFiles: 'Reports/Spark.html',
               reportName: 'SparkReport',
              reportTitles: 'The Report']
             
         }
       }
-        
-    
-    
     }
-    
-    
+   
  }
  }

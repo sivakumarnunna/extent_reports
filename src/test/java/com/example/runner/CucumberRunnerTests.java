@@ -1,5 +1,7 @@
 package com.example.runner;
 
+import java.net.MalformedURLException;
+
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
@@ -18,11 +20,10 @@ public class CucumberRunnerTests extends AbstractTestNGCucumberTests {
 	
 	
 	 @BeforeMethod
-	    @Parameters({"browser"})
-	    public static void setUp(String browser) {
+	    @Parameters({"browser","place"})
+	    public static void setUp(String browser,String place) throws MalformedURLException {
 		 
-		 System.out.println("Browser is "+browser);
-	       HelperClass.setUpDriver(browser);
+	       HelperClass.setUpDriver(browser,place);
 	    }
 
 }
