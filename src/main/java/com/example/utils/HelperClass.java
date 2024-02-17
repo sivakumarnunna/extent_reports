@@ -17,10 +17,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class HelperClass {
 
 	private static HelperClass helperClass;
+	private static ThreadLocal<WebDriver> driver = new ThreadLocal<WebDriver>();
 
-	private static WebDriver driver;
+	//private static WebDriver driver;
 	private static WebDriverWait wait;
-	public final static int TIMEOUT = 10;
+	public final static int TIMEOUT = 30;
 	private static String gridURL="http://192.168.0.201:4444";
 	
 	
@@ -32,48 +33,29 @@ public class HelperClass {
 
 				ChromeOptions options = new ChromeOptions();
 				options.addArguments("--start-maximized");
-				driver = new ChromeDriver(options);
+				driver.set(new ChromeDriver(options));
+				//driver = new ChromeDriver(options);
 			} else if (browser.equalsIgnoreCase("firefox")) {
 				FirefoxOptions options = new FirefoxOptions();
-				driver = new FirefoxDriver(options);
+				driver.set(new FirefoxDriver(options));
 			} else if (browser.equalsIgnoreCase("edge")) {
-				driver = new EdgeDriver();
+				driver.set(new EdgeDriver());
 			} else {
 				System.out.println("Please set valid browser");
 			}
 
 		}
 
-		else if (place.equalsIgnoreCase("remote")) {
-			
-			
-			if (browser.equalsIgnoreCase("chrome")) {
-
-				ChromeOptions options = new ChromeOptions();
-				options.addArguments("--start-maximized");
-			    driver = new RemoteWebDriver(new URL(gridURL), options);
-			} else if (browser.equalsIgnoreCase("firefox")) {
-				FirefoxOptions options = new FirefoxOptions();
-			    driver = new RemoteWebDriver(new URL(gridURL), options);
-			} else if (browser.equalsIgnoreCase("edge")) {
-				EdgeOptions options = new EdgeOptions();
-			    driver = new RemoteWebDriver(new URL(gridURL), options);
-			} else {
-				System.out.println("Please set valid browser");
-			}
-
-		}
-
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(TIMEOUT));
+		driver.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(TIMEOUT));
 
 	}
 
 	public static void openPage(String url) {
-		driver.get(url);
+		driver.get().get(url);
 	}
 
 	public static WebDriver getDriver() {
-		return driver;
+		return driver.get();
 	}
 
 	public static void setUpDriver(String browser,String place) throws MalformedURLException {
@@ -87,7 +69,7 @@ public class HelperClass {
 	public static void tearDown() {
 
 		if (driver != null) {
-			driver.close();
+			driver.get().close();
 			// driver.quit();
 		}
 
