@@ -15,20 +15,7 @@ sh 'mvn clean test'
 
     }
  
-   post {
-        always {
-          // publish html
-          publishHTML target: [
-              allowMissing: false,
-              alwaysLinkToLastBuild: true,
-              keepAll: true,
-              reportDir: 'ExtentReports/SparkReport_*',
-              reportFiles: 'Reports/Spark.html',
-              reportName: 'SparkReport',
-             reportTitles: 'The Report']
-            
-        }
-      }
+  
     }
    
  }
