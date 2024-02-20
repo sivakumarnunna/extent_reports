@@ -102,11 +102,7 @@ public class EmailSender {
     }
 
     public static void main(String[] args) {
-        String recipientEmail = "nsk.arch@gmail.com";
-        String subject = "Selenium Test Report";
-        String body = "Please find attached the Selenium test report.";
-        String reportFilePath = "ExtentReports/SparkReport 17_Feb_24 08_30_42/Reports/Spark.html";
-
-       // sendEmail(recipientEmail, subject, body, reportFilePath);
+    	
+       
     }
 }

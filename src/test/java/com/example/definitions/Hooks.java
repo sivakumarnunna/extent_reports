@@ -1,14 +1,21 @@
 package com.example.definitions;
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 import java.util.Set;
+import java.util.regex.Pattern;
 
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 
+import com.example.utils.ConfigReader;
 import com.example.utils.EmailSender;
 import com.example.utils.HelperClass;
 import io.cucumber.java.After;
@@ -26,22 +33,46 @@ public class Hooks {
  static   int skipped=0;
  public static Properties prop =null;
  
+ public static boolean deleteDirectory(File directory) {
+     if (directory.isDirectory()) {
+         for (File f : directory.listFiles()) {
+             boolean success = deleteDirectory(f);
+             if (!success) {
+                 return false;
+             }
+         }
+     }
+     return directory.delete();
+ }
+ 
+ public static void deleteFiles(File directory, String prefix) {
+     if (directory.isDirectory()) {
+         for (File f : directory.listFiles()) {
+             if (f.getName().startsWith(prefix)) {
+                 deleteDirectory(f);
+             }
+         }
+     }
+ }
+ public static String getFile(File directory, String regex) {
+     if (directory.isDirectory()) {
+         for (File f : directory.listFiles()) {
+        	 System.out.println(f.getPath());
+             if (f.getName().contains(regex)) {
+            	 return f.getName();
+             }
+         }
+     }
+    return "no file/folder found";
+ }
+ 
+ 
  @BeforeAll
  public static void configReader() throws IOException {
 	 
-     prop = new Properties();
-	 prop.load(new FileInputStream("src/test/resources/config.properties"));
-	 
-	Set<Entry<Object,Object>> propertiesset =  prop.entrySet();
-
-	   for(Entry<Object,Object> entry : propertiesset) {
-		   System.out.println(entry.getValue());
-		  String env =   System.getenv(entry.getKey().toString());
-		  
-		  if(env!=null && env.trim().isEmpty()) {
-				 prop.setProperty(entry.getKey().toString(), env);
-			}
-	   }
+	System.out.println("I am in before all");
+	 deleteFiles(new File(System.getProperty("user.dir")),"ExtentReports");
+    
  }
  
     @After
@@ -67,15 +98,15 @@ public class Hooks {
     }
     
     @AfterAll
-    public static void email() {
+    public static void email() throws FileNotFoundException, IOException {
     	
-		String htmlContent = "<html><body>  <h3>Execution Summary</h3>\n"
-				+ "<table border='1'><tr>" + "<th>Total Testcases</th>" + "<th>passed</th>"
-				+ "<th>Failed</th>" + "<th>skipped</th>" + "<tr>" + "<td>" + totalScearios + "</td>" + "<td>" + passed
-				+ "</td>" + "<td>" + failed + "</td>" + "<td>" + skipped + "</td>" + "</tr>" + "</table>	  <h4>Please find attached test report for more details</h4>\n"
-						+ "</body></html>";
-		EmailSender.sendEmail(prop.getProperty("email-receivers"), "Automation status", htmlContent,prop.getProperty("report-path"));
+    	ConfigReader.setProperty("totalScenarios", Integer.toString(totalScearios));
+    	ConfigReader.setProperty("passed", Integer.toString(passed));
+    	ConfigReader.setProperty("failed", Integer.toString(failed));
+    	ConfigReader.setProperty("skipped", Integer.toString(skipped));
+    	
     	
     }
+     
     
 }
