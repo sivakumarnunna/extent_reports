@@ -33,7 +33,6 @@ public class Hooks {
 	 prop.load(new FileInputStream("src/test/resources/config.properties"));
 	 
 	Set<Entry<Object,Object>> propertiesset =  prop.entrySet();
-	   System.out.println(propertiesset);
 
 	   for(Entry<Object,Object> entry : propertiesset) {
 		   System.out.println(entry.getValue());
@@ -42,11 +41,7 @@ public class Hooks {
 		  if(env!=null && env.trim().isEmpty()) {
 				 prop.setProperty(entry.getKey().toString(), env);
 			}
-		   
 	   }
-	   
-	   System.out.println(prop.getProperty("email-receivers"));
-	
  }
  
     @After
@@ -79,7 +74,7 @@ public class Hooks {
 				+ "<th>Failed</th>" + "<th>skipped</th>" + "<tr>" + "<td>" + totalScearios + "</td>" + "<td>" + passed
 				+ "</td>" + "<td>" + failed + "</td>" + "<td>" + skipped + "</td>" + "</tr>" + "</table>	  <h4>Please find attached test report for more details</h4>\n"
 						+ "</body></html>";
-		EmailSender.sendEmail(prop.getProperty("email-receivers"), "Automation status", htmlContent,"ExtentReports/SparkReport 19_Feb_24 10_25_45/PdfReport/ExtentPdf.pdf");
+		EmailSender.sendEmail(prop.getProperty("email-receivers"), "Automation status", htmlContent,prop.getProperty("report-path"));
     	
     }
     

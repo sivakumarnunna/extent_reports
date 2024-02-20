@@ -21,7 +21,7 @@ public class HelperClass {
 
 	//private static WebDriver driver;
 	private static WebDriverWait wait;
-	public final static int TIMEOUT = 30;
+	public final static int TIMEOUT = 10;
 	private static String gridURL="http://192.168.0.201:4444";
 	
 	
