@@ -12,7 +12,7 @@ public class ConfigReader {
 	
 	
 	 public static Properties properties =null;
-	 static {
+	public static void readProperties() {
 		 System.out.println("I am in static");
 		 properties = new Properties();
 		 try {
@@ -26,6 +26,7 @@ public class ConfigReader {
 					  properties.setProperty(entry.getKey().toString(), env);
 					}
 			   }
+			   System.out.println(properties);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

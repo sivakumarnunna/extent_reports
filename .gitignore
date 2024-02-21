@@ -5,4 +5,4 @@
 *.settings
 *.log
 ExtentReports*
-test-ouput/
+test-output/

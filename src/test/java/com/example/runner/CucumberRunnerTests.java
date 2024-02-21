@@ -35,7 +35,6 @@ public class CucumberRunnerTests extends AbstractTestNGCucumberTests {
 	    @Parameters({"browser","place"})
 	    public static void setUp(String browser,String place) throws MalformedURLException {
 		 
-		 System.out.println("I am in testng before method");
 	       HelperClass.setUpDriver(browser,place);
 	    }
 
