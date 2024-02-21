@@ -20,7 +20,6 @@ public class ConfigReader {
 
 			   for(Entry<Object,Object> entry : propertiesset) {
 				  String env =   System.getenv(entry.getKey().toString());
-				  System.out.println(env+"...env");
 				  if(env!=null && !env.isEmpty()) {
 					  properties.setProperty(entry.getKey().toString(), env);
 					}

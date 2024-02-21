@@ -23,6 +23,10 @@ import io.cucumber.java.AfterAll;
 import io.cucumber.java.Before;
 import io.cucumber.java.BeforeAll;
 import io.cucumber.java.Scenario;
+
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Map.Entry;
  
 public class Hooks {
@@ -33,7 +37,7 @@ public class Hooks {
  static   int skipped=0;
  public static Properties prop =null;
  
-
+public static Map<String,String> result = new LinkedHashMap<String,String>();
  
  
  @BeforeAll
@@ -47,9 +51,13 @@ public class Hooks {
  
     @After
     public static void tearDown(Scenario scenario) {
+    	
+    	
+    	result.put(scenario.getName(), scenario.getStatus().toString());
     	totalScearios=totalScearios+1;
          
     	io.cucumber.java.Status status =scenario.getStatus();
+    	
     	if(status.name().equalsIgnoreCase("passed")){
     		passed=passed+1;
     	}
@@ -74,7 +82,6 @@ public class Hooks {
     	ConfigReader.setProperty("passed", Integer.toString(passed));
     	ConfigReader.setProperty("failed", Integer.toString(failed));
     	ConfigReader.setProperty("skipped", Integer.toString(skipped));
-    	
     	
     }
      
