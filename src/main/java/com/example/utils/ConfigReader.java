@@ -13,7 +13,6 @@ public class ConfigReader {
 	
 	 public static Properties properties =null;
 	public static void readProperties() {
-		 System.out.println("I am in static");
 		 properties = new Properties();
 		 try {
 			properties.load(new FileInputStream("src/test/resources/config.properties"));
@@ -21,7 +20,7 @@ public class ConfigReader {
 
 			   for(Entry<Object,Object> entry : propertiesset) {
 				  String env =   System.getenv(entry.getKey().toString());
-				  
+				  System.out.println(env+"...env");
 				  if(env!=null && env.trim().isEmpty()) {
 					  properties.setProperty(entry.getKey().toString(), env);
 					}
