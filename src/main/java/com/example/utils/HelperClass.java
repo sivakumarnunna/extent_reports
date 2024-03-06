@@ -26,6 +26,10 @@ public class HelperClass {
 	
 	
 	private HelperClass(String browser, String place) throws MalformedURLException {
+		
+		System.out.println("Browser---"+browser);
+		System.out.println("place---"+place);
+
 
 		if (place.equalsIgnoreCase("local")) {
 
