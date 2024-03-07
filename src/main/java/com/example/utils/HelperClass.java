@@ -34,11 +34,11 @@ public class HelperClass {
 		if (place.equalsIgnoreCase("local")) {
 
 			if (browser.equalsIgnoreCase("chrome")) {
+				System.out.println("inside local chrome"+place);
 
 				ChromeOptions options = new ChromeOptions();
-				options.addArguments("--start-maximized");
+				//options.addArguments("--start-maximized");
 				driver.set(new ChromeDriver(options));
-				//driver = new ChromeDriver(options);
 			} else if (browser.equalsIgnoreCase("firefox")) {
 				FirefoxOptions options = new FirefoxOptions();
 				driver.set(new FirefoxDriver(options));
@@ -49,7 +49,6 @@ public class HelperClass {
 			}
 
 		}
-
 		driver.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(TIMEOUT));
 
 	}
